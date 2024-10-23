@@ -1,10 +1,11 @@
 #pragma once
 #include "Action.hpp"
-class Shoot_Action : public Action
+class Idle_Action : public Action
 {
 public:
-	Shoot_Action();
+	Idle_Action();
 	void Start(Plant* Plant)override;
 	void Update(Plant* Plant)override;
 	void End(Plant* Plant)override;
 };
+

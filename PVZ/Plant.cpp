@@ -33,12 +33,20 @@ Context::State Plant::getState() const
 
 sf::Color Plant::getColor() const
 {
+<<<<<<< HEAD
 	return mColor;
+=======
+	return sf::Color();
+>>>>>>> d840a5a326028cdbff159ccaa78cf4ce78cc4fd8
 }
 
 sf::Vector2f Plant::getPosition() const
 {
+<<<<<<< HEAD
 	return mPosition;
+=======
+	return sf::Vector2f();
+>>>>>>> d840a5a326028cdbff159ccaa78cf4ce78cc4fd8
 }
 
 int Plant::getAmmoCount() const
