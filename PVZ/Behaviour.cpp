@@ -58,7 +58,6 @@ void Behaviour::Update(Plant * Plant)
     }
 }
 
-
 void Behaviour::End(Plant * Plant)
 {
     for (const auto & a : mActions[Plant->getState()])

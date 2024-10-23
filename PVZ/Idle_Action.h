@@ -4,8 +4,8 @@ class Idle_Action : public Action
 {
 public:
 	Idle_Action();
-	void Start(Plant* Plant)override;
-	void Update(Plant* Plant)override;
-	void End(Plant* Plant)override;
+	void Start(Entity* Entity)override;
+	void Update(Entity* Entity)override;
+	void End(Entity* Entity)override;
 };
 

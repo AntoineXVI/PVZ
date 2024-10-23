@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Context.hpp"
+#include "Entity.h"
 class Plant;
 
 class Action
@@ -9,8 +10,8 @@ class Action
     std::map<Context::State, Action*> mActions;
 public:
     Action();
-    virtual void Start(Plant* Plant) = 0;
-    virtual void Update(Plant* Plant) = 0;
-    virtual void End(Plant* Plant) = 0;
+    virtual void Start(Entity* Entity) = 0;
+    virtual void Update(Entity* Entity) = 0;
+    virtual void End(Entity* Entity) = 0;
     virtual ~Action();
 };

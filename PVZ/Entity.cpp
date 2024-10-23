@@ -25,6 +25,11 @@ sf::Vector2f Entity::getPosition() const
 	return sf::Vector2f();
 }
 
+void Entity::setPosition(sf::Vector2f Position)
+{
+	mPosition = Position;
+}
+
 void Entity::setState(Context::State)
 {
 }

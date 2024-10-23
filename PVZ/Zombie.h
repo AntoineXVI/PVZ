@@ -6,4 +6,3 @@ public:
     Zombie(sf::Vector2f position,Behaviour* zombie_behaviour); 
     ~Zombie();
 };
-

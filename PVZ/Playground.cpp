@@ -63,24 +63,28 @@ void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
     if ((event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left))
     {
         sf::Vector2i MousePosition = sf::Mouse::getPosition(window);
-        float MouseFinalPosition = 0.f;
+        sf::Vector2i MouseFinalPosition = MousePosition;
 
-        if (MousePosition.y < 100.f)
+        if (MousePosition.y < 100.f) //alignement avec plante
         {
-            MouseFinalPosition = 50.f;
+            MouseFinalPosition.y = 50.f;
         }
         else if (MousePosition.y < 200.f)
         {
-            MouseFinalPosition = 150.f;
+            MouseFinalPosition.y = 150.f;
         }
         else if (MousePosition.y < 300.f)
         {
-            MouseFinalPosition = 250.f;
+            MouseFinalPosition.y = 250.f;
         }
         else
         {
-            MouseFinalPosition = 350.f;
+            MouseFinalPosition.y = 350.f;
         }
-        mZombies.push_back(new Zombie(sf::Vector2f(MousePosition.x, MouseFinalPosition), ZombieBehaviour));
+        if (MousePosition.x < 100.f) //pour ne pas apparaitre trop pres de la plante
+        {
+            MouseFinalPosition.x = 100.f;
+        }
+        mZombies.push_back(new Zombie(sf::Vector2f(MouseFinalPosition.x, MouseFinalPosition.y), ZombieBehaviour));
     }
 }

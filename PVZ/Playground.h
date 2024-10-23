@@ -4,9 +4,6 @@
 #include<vector>
 #include "Entity.h"
 
-
-
-
 class Plant;
 class Projectile;
 class Zombie;

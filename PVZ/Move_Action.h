@@ -1,10 +1,12 @@
 #pragma once
 #include "Action.hpp"
+#include "Entity.h"
 class Move_Action : public Action
 {
+	float speed;
 public:
 	Move_Action();
-	void Start(Plant* Plant)override;
-	void Update(Plant* Plant)override;
-	void End(Plant* Plant)override;
+	void Start(Entity* entity)override;
+	void Update(Entity* entity)override;
+	void End(Entity* entity)override;
 };
