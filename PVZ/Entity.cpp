@@ -41,4 +41,12 @@ Context::State Entity::getState() const
 
 void Entity::Update()
 {
+	if (mState == Context::State::MOVE)
+	{
+		
+		mPosition.x -= 0.01;
+
+		// Mettre à jour la position graphique
+		mShape.setPosition(mPosition);
+	}
 }

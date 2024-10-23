@@ -14,15 +14,15 @@ namespace
 
 Playground::Playground() 
 {
-    Behaviour* behaviour = new Behaviour();
+    Behaviour* behaviour = new Behaviour(); 
 
     Transition* shoot_Transition = new Transition();
-    shoot_Transition->addCondition(new Shoot_Condition());
-    shoot_Transition->setTargetState(Context::State::SHOOT);
+    //shoot_Transition->addCondition(new Shoot_Condition());
+    //shoot_Transition->setTargetState(Context::State::SHOOT);
 
-    Action* shoot_Action = new Shoot_Action();
+    ////Action* shoot_Action = new Shoot_Action();
 
-    behaviour->AddAction(Context::State::SHOOT, shoot_Action);
+    ////behaviour->AddAction(Context::State::SHOOT, shoot_Action);
 
 
     mPlants.push_back(new Plant(sf::Vector2f(10.f,50.f), behaviour,5));
@@ -35,7 +35,6 @@ void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vec
 {
 
 }
-
 
 
 Playground* Playground::instantiate()
@@ -55,7 +54,6 @@ Playground* Playground::getInstance()
 
 const std::vector<Zombie*>& Playground::getZombies() const
 {
-    // TODO: insérer une instruction return ici
     return mZombies;
 }
 
@@ -73,12 +71,16 @@ void Playground::draw(sf::RenderWindow& window)
     for (int i = 0; i < mZombies.size(); i++) {
         window.draw(mZombies[i]->GetShape());
     }
-
 }
 
 void Playground::update()
 {
-
+    for (int i = 0; i < mPlants.size(); i++) {
+        mPlants[i]->Update();
+    }
+    for (int i = 0; i < mZombies.size(); i++) {
+        mZombies[i]->Update();
+    }
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
