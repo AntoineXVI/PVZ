@@ -1,6 +1,7 @@
 #include "Playground.h"
 #include "Behaviour.hpp"
 #include "Plant.hpp"
+#include "Zombie.h"
 namespace
 {
     static Playground * sInstance = nullptr;
@@ -45,6 +46,9 @@ void Playground::draw(sf::RenderWindow& window)
     for (int i = 0; i < mPlants.size(); i++) {
         window.draw(mPlants[i]->GetShape());
     }
+    for (int i = 0; i < mZombies.size(); i++) {
+        window.draw(mZombies[i]->GetShape());
+    }
 
 }
 
@@ -55,4 +59,28 @@ void Playground::update()
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
 {
+    Behaviour* ZombieBehaviour = new Behaviour(); 
+    if ((event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left))
+    {
+        sf::Vector2i MousePosition = sf::Mouse::getPosition(window);
+        float MouseFinalPosition = 0.f;
+
+        if (MousePosition.y < 100.f)
+        {
+            MouseFinalPosition = 50.f;
+        }
+        else if (MousePosition.y < 200.f)
+        {
+            MouseFinalPosition = 150.f;
+        }
+        else if (MousePosition.y < 300.f)
+        {
+            MouseFinalPosition = 250.f;
+        }
+        else
+        {
+            MouseFinalPosition = 350.f;
+        }
+        mZombies.push_back(new Zombie(sf::Vector2f(MousePosition.x, MouseFinalPosition), ZombieBehaviour));
+    }
 }

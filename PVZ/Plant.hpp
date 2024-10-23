@@ -16,15 +16,7 @@ public:
         int ammo_count);
     ~Plant();
 
-    void setState(Context::State);
-    Context::State getState() const;
-
-    sf::Color getColor() const;
-    sf::Vector2f getPosition() const;
     int getAmmoCount() const;
     void refillMagazine() ;
-
     bool shoot();
-
-    void Update();
 };

@@ -22,25 +22,6 @@ Plant::~Plant()
 {
 }
 
-void Plant::setState(Context::State)
-{
-}
-
-Context::State Plant::getState() const
-{
-	return Context::State();
-}
-
-sf::Color Plant::getColor() const
-{
-	return mColor;
-}
-
-sf::Vector2f Plant::getPosition() const
-{
-	return mPosition;
-}
-
 int Plant::getAmmoCount() const
 {
 	return 0;
@@ -54,16 +35,3 @@ bool Plant::shoot()
 {
 	return false;
 }
-
-void Plant::Update()
-{
-}
-
-
-
-
-
-
-
-
-
