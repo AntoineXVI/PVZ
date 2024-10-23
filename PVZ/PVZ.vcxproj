@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="Condition.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Move_Action.cpp" />
     <ClCompile Include="Plant.cpp" />

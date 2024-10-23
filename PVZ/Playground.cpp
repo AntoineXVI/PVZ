@@ -4,6 +4,7 @@
 
 #include "Zombie.h"
 #include "Transition.hpp"
+#include "Condition.hpp"
 #include "Shoot_Condition.h"
 #include "Shoot_Action.h"
 namespace

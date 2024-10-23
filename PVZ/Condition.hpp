@@ -1,9 +1,11 @@
 #pragma once
 
-class Plant;
+class Entity;
 
 class Condition 
 {
 public:
-    virtual bool Test(Plant * Plant) = 0;
+    Condition();
+    ~Condition();
+    virtual bool Test(Entity* Plant) = 0;
 };
