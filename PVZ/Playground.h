@@ -29,6 +29,9 @@ private:
 public:
 	static Playground* instantiate();
 	static Playground* getInstance();
+
+	const std::vector<Zombie*>& getZombies() const ;
+
 	~Playground();
 	void draw(sf::RenderWindow& window);
 	void update();

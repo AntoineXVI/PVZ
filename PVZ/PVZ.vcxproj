@@ -135,12 +135,18 @@
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="Die_Action.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Hit_Action.cpp" />
+    <ClCompile Include="Idle_Action.cpp" />
+    <ClCompile Include="Move_Action.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Playground.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="PVZ.cpp" />
+    <ClCompile Include="Reload_Action.cpp" />
     <ClCompile Include="Shoot_Action.cpp" />
+    <ClCompile Include="Shoot_Condition.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
@@ -149,11 +155,17 @@
     <ClInclude Include="Behaviour.hpp" />
     <ClInclude Include="Condition.hpp" />
     <ClInclude Include="Context.hpp" />
+    <ClInclude Include="Die_Action.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Hit_Action.h" />
+    <ClInclude Include="Idle_Action.h" />
+    <ClInclude Include="Move_Action.h" />
     <ClInclude Include="Plant.hpp" />
     <ClInclude Include="Playground.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Reload_Action.h" />
     <ClInclude Include="Shoot_Action.h" />
+    <ClInclude Include="Shoot_Condition.h" />
     <ClInclude Include="Transition.hpp" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>

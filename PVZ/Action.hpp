@@ -3,10 +3,12 @@
 #include "Context.hpp"
 class Plant;
 
+
 class Action
 {
     Context::State state;
     std::map<Context::State, Action*> mActions;
+
 public:
     Action();
     virtual void Start(Plant* Plant) = 0;
