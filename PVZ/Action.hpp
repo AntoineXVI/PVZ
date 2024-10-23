@@ -4,10 +4,12 @@
 #include "Entity.h"
 class Plant;
 
+
 class Action
 {
     Context::State state;
     std::map<Context::State, Action*> mActions;
+
 public:
     Action();
     virtual void Start(Entity* Entity) = 0;

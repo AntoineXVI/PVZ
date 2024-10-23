@@ -1,4 +1,7 @@
 #include "Plant.hpp"
+#include "Transition.hpp"
+#include "Shoot_Condition.h"
+#include "Shoot_Action.h"
 //Plant::Plant()
 //{
 //}
@@ -9,13 +12,20 @@ Plant::Plant(sf::Vector2f position, Behaviour* plant_behaviour, int ammo_count) 
 	mBehaviour = plant_behaviour;
 	mAmmoCount = ammo_count;
 	mMaxAmmo = ammo_count;
-	mState = Context::State::IDLE;
+	mState = Context::State::SHOOT;
 
 	sf::CircleShape shape(10.f);
 	mShape = shape;
 	mColor = sf::Color(100, 250, 50);
 	mShape.setFillColor(mColor);
 	mShape.setPosition(position);
+
+	//deplacer dans playground::constructor
+	// 
+
+	
+
+
 }
 
 Plant::~Plant()

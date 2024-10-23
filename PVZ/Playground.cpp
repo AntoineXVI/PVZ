@@ -1,7 +1,11 @@
 #include "Playground.h"
 #include "Behaviour.hpp"
 #include "Plant.hpp"
+
 #include "Zombie.h"
+#include "Transition.hpp"
+#include "Shoot_Condition.h"
+#include "Shoot_Action.h"
 namespace
 {
     static Playground * sInstance = nullptr;
@@ -10,6 +14,16 @@ namespace
 Playground::Playground() 
 {
     Behaviour* behaviour = new Behaviour();
+
+    Transition* shoot_Transition = new Transition();
+    shoot_Transition->addCondition(new Shoot_Condition());
+    shoot_Transition->setTargetState(Context::State::SHOOT);
+
+    Action* shoot_Action = new Shoot_Action();
+
+    behaviour->AddAction(Context::State::SHOOT, shoot_Action);
+
+
     mPlants.push_back(new Plant(sf::Vector2f(10.f,50.f), behaviour,5));
     mPlants.push_back(new Plant(sf::Vector2f(10.f, 150.f), behaviour, 5));
     mPlants.push_back(new Plant(sf::Vector2f(10.f, 250.f), behaviour, 5));
@@ -18,7 +32,10 @@ Playground::Playground()
 
 void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mEnemies)
 {
+
 }
+
+
 
 Playground* Playground::instantiate()
 {
@@ -33,6 +50,12 @@ Playground* Playground::instantiate()
 Playground* Playground::getInstance()
 {
     return sInstance;
+}
+
+const std::vector<Zombie*>& Playground::getZombies() const
+{
+    // TODO: insérer une instruction return ici
+    return mZombies;
 }
 
 

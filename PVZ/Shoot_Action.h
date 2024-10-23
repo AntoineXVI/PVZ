@@ -4,7 +4,8 @@ class Shoot_Action : public Action
 {
 public:
 	Shoot_Action();
-	void Start(Entity* Entity)override;
-	void Update(Entity* Entity)override;
-	void End(Entity* Entity)override;
+	void Start(Plant* Plant)override;
+	void Update(Plant* Plant)override;
+	void End(Plant* Plant)override;
+	~Shoot_Action();
 };
