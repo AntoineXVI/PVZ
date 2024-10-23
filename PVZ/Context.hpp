@@ -1,7 +1,13 @@
+#pragma once
 namespace Context
 {
-enum class State 
-{
-    // ajoutez vos états ici
-};
+    enum class State
+    {
+        IDLE,
+        SHOOT,
+        RELOAD,
+        MOVE,
+        HIT,
+        DIE
+    };
 };

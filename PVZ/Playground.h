@@ -7,7 +7,11 @@ class Plant;
 class Projectile;
 class Zombie;
 
-
+class Playground;
+namespace
+{
+	static Playground const* sinstance = nullptr;
+}
 class Playground
 {
 private:

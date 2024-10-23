@@ -4,14 +4,11 @@
 #include "Context.hpp"
 #include "Behaviour.hpp"
 #include <iostream>
+#include "Entity.h"
 
-class Plant
+class Plant : public Entity
 {
-    sf::Vector2f mPosition;
-    std::string mName;
     int mAmmoCount, mMaxAmmo;
-    Context::State mState;
-    Behaviour * mBehaviour;
 public:
     Plant();
     Plant(
