@@ -1,10 +1,6 @@
 #include "Behaviour.hpp"
-<<<<<<< HEAD
-//#include "IdleAction.hpp"
-#include "Action.hpp"
-=======
 #include "Idle_Action.h"
->>>>>>> d840a5a326028cdbff159ccaa78cf4ce78cc4fd8
+#include "Action.hpp"
 #include "Plant.hpp"
 #include "Transition.hpp"
 
