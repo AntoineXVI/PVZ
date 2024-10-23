@@ -6,7 +6,6 @@
 #include "Transition.hpp"
 #include "Shoot_Condition.h"
 #include "Shoot_Action.h"
->>>>>>> Stashed changes
 namespace
 {
     static Playground * sInstance = nullptr;
