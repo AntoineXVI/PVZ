@@ -1,6 +1,5 @@
 #include "Transition.hpp"
 #include "Plant.hpp"
-
 void Transition::setTargetState(Context::State target_state)
 {
     mTargetState = target_state;

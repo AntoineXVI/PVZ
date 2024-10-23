@@ -5,6 +5,8 @@ class Plant;
 class Action
 {
 public:
+    Action();
+    virtual ~Action();
     virtual void Start(Plant * Plant) = 0;
     virtual void Update(Plant * Plant) = 0;
     virtual void End(Plant * Plant) = 0;

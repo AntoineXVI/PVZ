@@ -1,17 +1,13 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Color.hpp>
-#include "Context.hpp"
 #include "Behaviour.hpp"
 #include <iostream>
+#include "Entity.h"
 
-class Plant
+class Plant : public Entity
 {
-    sf::Vector2f mPosition;
-    std::string mName;
     int mAmmoCount, mMaxAmmo;
-    Context::State mState;
-    Behaviour * mBehaviour;
 public:
     Plant();
     Plant(
