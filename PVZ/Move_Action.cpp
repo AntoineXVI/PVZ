@@ -2,12 +2,12 @@
 
 Move_Action::Move_Action()
 {
-
+	speed = 1.f;
 }
 
 void Move_Action::Start(Entity* entity)
 {
-	speed = 1.f;
+	
 }
 
 void Move_Action::Update(Entity* entity)

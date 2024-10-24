@@ -4,7 +4,8 @@ class Die_Action : public Action
 {
 public:
 	Die_Action();
-	void Start(Entity* Plant)override;
-	void Update(Entity* Plant)override;
-	void End(Entity* Plant)override;
+	void Start(Entity* entity)override;
+	void Update(Entity* entity)override;
+	void End(Entity* entity)override;
+
 };

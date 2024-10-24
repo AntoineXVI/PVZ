@@ -16,9 +16,9 @@ public:
     Behaviour();
     ~Behaviour();
 
-    void Start(Entity*Plant);
-    void Update(Entity*Plant);
-    void End(Entity*Plant);
+    void Start(Entity* entity);
+    void Update(Entity* entity);
+    void End(Entity* entity);
 
     void AddAction(Context::State key, Action* value);
     void AddTransition(Context::State key, Transition* value);

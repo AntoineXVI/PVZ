@@ -137,6 +137,9 @@
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Condition.cpp" />
     <ClCompile Include="Die_Action.cpp" />
+
+    <ClCompile Include="Die_Condition.cpp" />
+
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Hit_Action.cpp" />
     <ClCompile Include="Idle_Action.cpp" />
@@ -157,6 +160,7 @@
     <ClInclude Include="Condition.hpp" />
     <ClInclude Include="Context.hpp" />
     <ClInclude Include="Die_Action.h" />
+    <ClInclude Include="Die_Condition.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Hit_Action.h" />
     <ClInclude Include="Idle_Action.h" />

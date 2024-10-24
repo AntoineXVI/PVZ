@@ -14,6 +14,7 @@ sf::CircleShape Entity::GetShape()
 
 Entity::~Entity()
 {
+
 }
 
 sf::Color Entity::getColor() const
@@ -31,9 +32,11 @@ void Entity::setPosition(sf::Vector2f Position)
 	mPosition = Position;
 }
 
-void Entity::setState(Context::State state)
+
+void Entity::setState(Context::State NewState)
 {
-	mState = state;
+	mState = NewState;
+
 }
 
 Context::State Entity::getState() const
@@ -43,5 +46,19 @@ Context::State Entity::getState() const
 
 void Entity::Update()
 {
+
+	if (mState == Context::State::MOVE)
+	{
+		mPosition.x -= 0.01;
+
+		mShape.setPosition(mPosition);
+	}
+	if (mState == Context::State::DIE)
+	{
+		mShape.setFillColor(sf::Color::Transparent);
+
+	}
+
 	mBehaviour->Update(this);
+
 }

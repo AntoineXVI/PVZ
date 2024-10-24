@@ -51,6 +51,12 @@
     <ClCompile Include="Move_Action.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+
+    <ClCompile Include="Die_Action.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Die_Condition.cpp">
+
     <ClCompile Include="Reload_Action.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -64,6 +70,7 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Idle_Action.cpp">
+
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,6 +114,8 @@
     <ClInclude Include="Die_Action.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Die_Condition.h">
+
     <ClInclude Include="Hit_Action.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>

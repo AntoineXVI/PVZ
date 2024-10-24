@@ -3,8 +3,7 @@
 class Shoot_Condition : public Condition
 {
 public:
-	Shoot_Condition() ;
-	bool Test(Entity* Plant) override;
-	~Shoot_Condition();
+	Shoot_Condition() {};
+	bool Test(Entity* entity) override ;
 };
 

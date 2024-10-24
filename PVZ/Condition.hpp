@@ -7,5 +7,5 @@ class Condition
 public:
     Condition();
     ~Condition();
-    virtual bool Test(Entity* Plant) = 0;
+    virtual bool Test(Entity* entity) = 0;
 };

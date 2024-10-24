@@ -14,7 +14,8 @@ protected:
     std::vector<Condition*> mConditions;
 
 public:
-    void Try(Entity* Plant);
+    void Try(Entity* entity);
+
     void setTargetState(Context::State target_state);
     void addCondition(Condition* condition);
 };
