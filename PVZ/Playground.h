@@ -19,7 +19,7 @@ class Playground
 private:
 	std::vector<Plant*> mPlants;
 	std::vector<Zombie*> mZombies;
-	//std::vector<Projectile*> mProjectiles;
+	std::vector<Projectile*> mProjectiles;
 
 	Playground();
 	void checkCollision(std::vector<Projectile*>& mProjectiles,std::vector<Zombie*>& mEnemies);
@@ -28,7 +28,8 @@ public:
 	static Playground* getInstance();
 
 	const std::vector<Zombie*>& getZombies() const ;
-
+	const std::vector<Projectile*>& getProjectiles() const;
+	void addProjectiles(Projectile* proj);
 	~Playground();
 	void draw(sf::RenderWindow& window);
 	void update();

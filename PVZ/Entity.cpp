@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Behaviour.hpp"
 
 Entity::Entity(sf::Vector2f position, Behaviour* behaviour)
 {
@@ -17,12 +18,12 @@ Entity::~Entity()
 
 sf::Color Entity::getColor() const
 {
-	return sf::Color();
+	return mColor;
 }
 
 sf::Vector2f Entity::getPosition() const
 {
-	return sf::Vector2f();
+	return mPosition;
 }
 
 void Entity::setPosition(sf::Vector2f Position)
@@ -30,15 +31,17 @@ void Entity::setPosition(sf::Vector2f Position)
 	mPosition = Position;
 }
 
-void Entity::setState(Context::State)
+void Entity::setState(Context::State state)
 {
+	mState = state;
 }
 
 Context::State Entity::getState() const
 {
-	return Context::State();
+	return mState;
 }
 
 void Entity::Update()
 {
+	mBehaviour->Update(this);
 }

@@ -37,7 +37,7 @@ void Behaviour::AddAction(Context::State key, Action* value)
     mActions[key].push_back(value);
 }
 
-void Behaviour::Start(Plant * Plant)
+void Behaviour::Start(Entity* Plant)
 {
     for (const auto & a : mActions[Plant->getState()])
     {
@@ -45,7 +45,7 @@ void Behaviour::Start(Plant * Plant)
     }
 }
 
-void Behaviour::Update(Plant * Plant)
+void Behaviour::Update(Entity* Plant)
 {
     for (const auto & a : mActions[Plant->getState()])
     {
@@ -58,7 +58,7 @@ void Behaviour::Update(Plant * Plant)
     }
 }
 
-void Behaviour::End(Plant * Plant)
+void Behaviour::End(Entity* Plant)
 {
     for (const auto & a : mActions[Plant->getState()])
     {

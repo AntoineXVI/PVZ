@@ -3,6 +3,7 @@
 #include "Plant.hpp"
 
 #include "Zombie.h"
+#include "Projectile.h"
 #include "Transition.hpp"
 #include "Condition.hpp"
 #include "Shoot_Condition.h"
@@ -23,6 +24,7 @@ Playground::Playground()
     Action* shoot_Action = new Shoot_Action();
 
     behaviour->AddAction(Context::State::SHOOT, shoot_Action);
+    behaviour->AddTransition(Context::State::IDLE, shoot_Transition);
 
 
     mPlants.push_back(new Plant(sf::Vector2f(10.f,50.f), behaviour,5));
@@ -59,10 +61,20 @@ const std::vector<Zombie*>& Playground::getZombies() const
     return mZombies;
 }
 
+const std::vector<Projectile*>& Playground::getProjectiles() const
+{
+    // TODO: insérer une instruction return ici
+    return mProjectiles;
+}
 
 Playground::~Playground()
 {
 
+}
+
+void Playground::addProjectiles(Projectile* proj )
+{
+    mProjectiles.push_back(proj);
 }
 
 void Playground::draw(sf::RenderWindow& window)
@@ -73,12 +85,17 @@ void Playground::draw(sf::RenderWindow& window)
     for (int i = 0; i < mZombies.size(); i++) {
         window.draw(mZombies[i]->GetShape());
     }
+    for (int i = 0; i < mProjectiles.size(); i++) {
+        window.draw(mProjectiles[i]->GetShape());
+    }
 
 }
 
 void Playground::update()
 {
-
+    for (int i = 0; i < mPlants.size(); i++) {
+        mPlants[i]->Update();
+    }
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
