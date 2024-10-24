@@ -3,6 +3,7 @@
 #include "Plant.hpp"
 
 #include "Zombie.h"
+#include "Projectile.h"
 #include "Transition.hpp"
 #include "Condition.hpp"
 #include "Shoot_Condition.h"
@@ -23,7 +24,11 @@ Playground::Playground()
     shoot_Transition->setTargetState(Context::State::SHOOT);
     //shoot_Transition->addCondition(new Shoot_Condition());
 
-    //Action* shoot_Action = new Shoot_Action();
+
+    Action* shoot_Action = new Shoot_Action();
+
+    behaviour->AddAction(Context::State::SHOOT, shoot_Action);
+    behaviour->AddTransition(Context::State::IDLE, shoot_Transition);
 
     //behaviour->AddAction(Context::State::SHOOT, shoot_Action);
 
@@ -55,7 +60,7 @@ void Playground::checkCollisionPlant(std::vector<Plant*>& plants, std::vector<Zo
         {
             sf::FloatRect zombieBounds = mEnemies[j]->GetShape().getGlobalBounds();
 
-            // Vérifie si la plante est touché par un zombie
+            // VÃ©rifie si la plante est touchÃ© par un zombie
             if (plantBounds.intersects(zombieBounds))
             {
                 //collision
@@ -75,7 +80,7 @@ void Playground::checkCollisionPlant(std::vector<Plant*>& plants, std::vector<Zo
         {
             sf::FloatRect zombieBounds = mEnemies[j]->GetShape().getGlobalBounds();
 
-            // Vérifie si le projectile touche un zombie
+            // VÃ©rifie si le projectile touche un zombie
             if (plantBounds.intersects(zombieBounds))
             {
                 //collision
@@ -106,6 +111,7 @@ const std::vector<Zombie*>& Playground::getZombies() const
     return mZombies;
 }
 
+
 const std::vector<Projectile*>& Playground::getProjectile() const
 {
     return mProjectiles;
@@ -117,9 +123,15 @@ const std::vector<Plant*>& Playground::getPlant() const
 }
 
 
+
 Playground::~Playground()
 {
 
+}
+
+void Playground::addProjectiles(Projectile* proj )
+{
+    mProjectiles.push_back(proj);
 }
 
 void Playground::draw(sf::RenderWindow& window)
@@ -130,6 +142,11 @@ void Playground::draw(sf::RenderWindow& window)
     for (int i = 0; i < mZombies.size(); i++) {
         window.draw(mZombies[i]->GetShape());
     }
+
+    for (int i = 0; i < mProjectiles.size(); i++) {
+        window.draw(mProjectiles[i]->GetShape());
+    }
+
 }
 
 void Playground::update()
@@ -145,6 +162,7 @@ void Playground::update()
     }
     checkCollisionPlant(mPlants, mZombies); 
     checkCollisionProjectile(mProjectiles, mZombies);
+
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)

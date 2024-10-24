@@ -5,14 +5,14 @@ Idle_Action::Idle_Action()
 
 }
 
-void Idle_Action::Start(Plant* Plant)
+void Idle_Action::Start(Entity* Plant)
 {
 }
 
-void Idle_Action::Update(Plant* Plant)
+void Idle_Action::Update(Entity* Plant)
 {
 }
 
-void Idle_Action::End(Plant* Plant)
+void Idle_Action::End(Entity* Plant)
 {
 }

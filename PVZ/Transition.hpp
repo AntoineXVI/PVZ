@@ -15,6 +15,7 @@ protected:
 
 public:
     void Try(Entity* entity);
+
     void setTargetState(Context::State target_state);
     void addCondition(Condition* condition);
 };

@@ -14,7 +14,7 @@ public:
     sf::Vector2f getPosition() const;
     void setPosition(sf::Vector2f Position);
 
-    void setState(Context::State);
+    void setState(Context::State state);
     Context::State getState() const;
 
     void Update();

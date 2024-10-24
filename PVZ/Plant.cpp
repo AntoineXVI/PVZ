@@ -12,7 +12,7 @@ Plant::Plant(sf::Vector2f position, Behaviour* plant_behaviour, int ammo_count) 
 	mBehaviour = plant_behaviour;
 	mAmmoCount = ammo_count;
 	mMaxAmmo = ammo_count;
-	mState = Context::State::SHOOT;
+	mState = Context::State::IDLE;
 
 	sf::CircleShape shape(10.f);
 	mShape = shape;

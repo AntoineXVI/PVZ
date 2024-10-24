@@ -22,7 +22,9 @@ private:
 	std::vector<Zombie*> mZombies;
 	std::vector<Projectile*> mProjectiles;
 
+
 	Behaviour* ZombieBehaviour;
+
 
 	Playground();
 public:
@@ -31,9 +33,13 @@ public:
 	void checkCollisionPlant(std::vector<Plant*>& mProjectiles,std::vector<Zombie*>& mEnemies); 
 	void checkCollisionProjectile(std::vector<Projectile*>& mProjectiles,std::vector<Zombie*>& mEnemies); 
 
+
 	const std::vector<Zombie*>& getZombies() const ; 
 	const std::vector<Projectile*>& getProjectile() const ;
 	const std::vector<Plant*>& getPlant() const ; 
+
+
+	void addProjectiles(Projectile* proj);
 
 	~Playground();
 	void draw(sf::RenderWindow& window);

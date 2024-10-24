@@ -58,6 +58,7 @@ void Behaviour::Update(Entity* entity)
     }
 }
 
+
 void Behaviour::End(Entity* entity)
 {
     for (const auto & a : mActions[entity->getState()])

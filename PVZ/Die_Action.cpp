@@ -13,5 +13,6 @@ void Die_Action::Update(Entity* entity)
 }
 
 void Die_Action::End(Entity* entity)
+
 {
 }
