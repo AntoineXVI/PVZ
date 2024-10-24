@@ -7,6 +7,8 @@
 #include "Condition.hpp"
 #include "Shoot_Condition.h"
 #include "Shoot_Action.h"
+#include "Die_Condition.h"
+#include "Die_Action.h"
 namespace
 {
     static Playground * sInstance = nullptr;
@@ -14,28 +16,75 @@ namespace
 
 Playground::Playground() 
 {
+    //plant
     Behaviour* behaviour = new Behaviour(); 
 
     Transition* shoot_Transition = new Transition();
+    shoot_Transition->setTargetState(Context::State::SHOOT);
     //shoot_Transition->addCondition(new Shoot_Condition());
-    //shoot_Transition->setTargetState(Context::State::SHOOT);
 
-    ////Action* shoot_Action = new Shoot_Action();
+    //Action* shoot_Action = new Shoot_Action();
 
-    ////behaviour->AddAction(Context::State::SHOOT, shoot_Action);
-
+    //behaviour->AddAction(Context::State::SHOOT, shoot_Action);
 
     mPlants.push_back(new Plant(sf::Vector2f(10.f,50.f), behaviour,5));
     mPlants.push_back(new Plant(sf::Vector2f(10.f, 150.f), behaviour, 5));
     mPlants.push_back(new Plant(sf::Vector2f(10.f, 250.f), behaviour, 5));
     mPlants.push_back(new Plant(sf::Vector2f(10.f, 350.f), behaviour, 5));
+
+    //zombie
+    ZombieBehaviour = new Behaviour();
+
+    Transition* die_Transition = new Transition();
+    die_Transition->setTargetState(Context::State::DIE);
+    die_Transition->addCondition(new Die_Condition());
+
+    /*Action* die_Action = new Die_Action(); 
+
+    ZombieBehaviour->AddAction(Context::State::DIE, die_Action); */
 }
 
-void Playground::checkCollision(std::vector<Projectile*>& mProjectiles, std::vector<Zombie*>& mEnemies)
+void Playground::checkCollisionPlant(std::vector<Plant*>& plants, std::vector<Zombie*>& mEnemies) //check si zombie tue plante
 {
+    for (int i = 0; i < plants.size(); ++i)
+    {
+        sf::FloatRect plantBounds = plants[i]->GetShape().getGlobalBounds();
 
+        // Parcours de chaque zombie
+        for (int j = 0; j < mEnemies.size(); ++j)
+        {
+            sf::FloatRect zombieBounds = mEnemies[j]->GetShape().getGlobalBounds();
+
+            // Vérifie si la plante est touché par un zombie
+            if (plantBounds.intersects(zombieBounds))
+            {
+                //collision
+                plants[i]->setState(Context::State::HIT);
+                mEnemies[j]->setState(Context::State::DIE);
+            }
+        }
+    }
+}void Playground::checkCollisionProjectile(std::vector<Projectile*>& projectiles, std::vector<Zombie*>& mEnemies) //check si zombie tue plante
+{
+    for (int i = 0; i < projectiles.size(); ++i)
+    {
+        sf::FloatRect plantBounds = projectiles[i]->GetShape().getGlobalBounds();
+
+        // Parcours de chaque zombie
+        for (int j = 0; j < mEnemies.size(); ++j)
+        {
+            sf::FloatRect zombieBounds = mEnemies[j]->GetShape().getGlobalBounds();
+
+            // Vérifie si le projectile touche un zombie
+            if (plantBounds.intersects(zombieBounds))
+            {
+                //collision
+                projectiles[i]->setState(Context::State::DIE);
+                mEnemies[j]->setState(Context::State::DIE);
+            }
+        }
+    }
 }
-
 
 Playground* Playground::instantiate()
 {
@@ -55,6 +104,16 @@ Playground* Playground::getInstance()
 const std::vector<Zombie*>& Playground::getZombies() const
 {
     return mZombies;
+}
+
+const std::vector<Projectile*>& Playground::getProjectile() const
+{
+    return mProjectiles;
+}
+
+const std::vector<Plant*>& Playground::getPlant() const
+{
+    return mPlants;
 }
 
 
@@ -81,11 +140,15 @@ void Playground::update()
     for (int i = 0; i < mZombies.size(); i++) {
         mZombies[i]->Update();
     }
+    for (int i = 0; i < mProjectiles.size(); i++) {
+        mProjectiles[i]->Update();
+    }
+    checkCollisionPlant(mPlants, mZombies); 
+    checkCollisionProjectile(mProjectiles, mZombies);
 }
 
 void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
 {
-    Behaviour* ZombieBehaviour = new Behaviour(); 
     if ((event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left))
     {
         sf::Vector2i MousePosition = sf::Mouse::getPosition(window);

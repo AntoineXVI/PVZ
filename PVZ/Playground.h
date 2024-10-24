@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include "Entity.h"
+#include "Projectile.h"
 
 class Plant;
 class Projectile;
@@ -19,15 +20,20 @@ class Playground
 private:
 	std::vector<Plant*> mPlants;
 	std::vector<Zombie*> mZombies;
-	//std::vector<Projectile*> mProjectiles;
+	std::vector<Projectile*> mProjectiles;
+
+	Behaviour* ZombieBehaviour;
 
 	Playground();
-	void checkCollision(std::vector<Projectile*>& mProjectiles,std::vector<Zombie*>& mEnemies);
 public:
 	static Playground* instantiate();
 	static Playground* getInstance();
+	void checkCollisionPlant(std::vector<Plant*>& mProjectiles,std::vector<Zombie*>& mEnemies); 
+	void checkCollisionProjectile(std::vector<Projectile*>& mProjectiles,std::vector<Zombie*>& mEnemies); 
 
-	const std::vector<Zombie*>& getZombies() const ;
+	const std::vector<Zombie*>& getZombies() const ; 
+	const std::vector<Projectile*>& getProjectile() const ;
+	const std::vector<Plant*>& getPlant() const ; 
 
 	~Playground();
 	void draw(sf::RenderWindow& window);

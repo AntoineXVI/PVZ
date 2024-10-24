@@ -3,13 +3,10 @@
 #include "Entity.h"
 #include "Playground.h"
 
-
-
-bool Shoot_Condition::Test(Entity* plant)
+bool Shoot_Condition::Test(Entity* entity)
 {
-	//auto plant_pos = plant->getPosition();
-	//auto enemies = Playground::getInstance()->getZombies();
-
+	auto plant_pos = entity->getPosition();
+	auto enemies = Playground::getInstance()->getZombies();
 	return false;
 }
 

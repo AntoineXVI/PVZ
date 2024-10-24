@@ -5,7 +5,7 @@
 #include <vector>
 //#include "Action.hpp"
 class Action;
-class Plant;
+class Entity;
 class Transition;
 
 class Behaviour
@@ -16,9 +16,9 @@ public:
     Behaviour();
     ~Behaviour();
 
-    void Start(Plant *Plant);
-    void Update(Plant *Plant);
-    void End(Plant *Plant);
+    void Start(Entity* entity);
+    void Update(Entity* entity);
+    void End(Entity* entity);
 
     void AddAction(Context::State key, Action* value);
     void AddTransition(Context::State key, Transition* value);
