@@ -137,13 +137,13 @@
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Condition.cpp" />
     <ClCompile Include="Die_Action.cpp" />
-
     <ClCompile Include="Die_Condition.cpp" />
-
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Hit_Action.cpp" />
+    <ClCompile Include="Hit_Condition.cpp" />
     <ClCompile Include="Idle_Action.cpp" />
     <ClCompile Include="Move_Action.cpp" />
+    <ClCompile Include="Move_Condition.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Playground.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -163,8 +163,10 @@
     <ClInclude Include="Die_Condition.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Hit_Action.h" />
+    <ClInclude Include="Hit_Condition.h" />
     <ClInclude Include="Idle_Action.h" />
     <ClInclude Include="Move_Action.h" />
+    <ClInclude Include="Move_Condition.h" />
     <ClInclude Include="Plant.hpp" />
     <ClInclude Include="Playground.h" />
     <ClInclude Include="Projectile.h" />

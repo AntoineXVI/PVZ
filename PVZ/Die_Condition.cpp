@@ -7,10 +7,12 @@ Die_Condition::Die_Condition()
 
 bool Die_Condition::Test(Entity* entity)
 {
-	auto projectiles = Playground::getInstance()->getPlant();
-	auto zombies = Playground::getInstance()->getZombies();
+	/*auto projectiles = Playground::getInstance()->getPlant();
+	auto zombies = Playground::getInstance()->getZombies();*/
 	//Playground::getInstance()->checkCollision(projectiles, zombies);
-
+	if (entity->GetLife()<=0) {
+		return true;
+	}
 	return false;
 }
 

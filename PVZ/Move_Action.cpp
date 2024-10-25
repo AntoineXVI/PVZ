@@ -2,7 +2,6 @@
 
 Move_Action::Move_Action()
 {
-	speed = 1.f;
 }
 
 void Move_Action::Start(Entity* entity)
@@ -12,10 +11,7 @@ void Move_Action::Start(Entity* entity)
 
 void Move_Action::Update(Entity* entity)
 {
-	sf::Vector2f Position;
-	Position.x = entity->getPosition().x - (1 * speed);
-	Position.y = entity->getPosition().y;
-	entity->setPosition(Position);
+	entity->Move();
 }
 
 void Move_Action::End(Entity* entity)

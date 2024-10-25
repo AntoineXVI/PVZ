@@ -8,20 +8,22 @@ Shoot_Action::Shoot_Action():Action()
 
 }
 
-void Shoot_Action::Start(Entity* Plant)
+void Shoot_Action::Start(Entity* entity)
 {
 	
 }
 
-void Shoot_Action::Update(Entity* Plant)
+void Shoot_Action::Update(Entity* entity)
 {
-	Behaviour* behaviour = new Behaviour();
-	sf::Vector2f pos(Plant->getPosition().x + 50, Plant->getPosition().y);
-	Projectile* proj = new Projectile(pos,behaviour);
-	Playground::getInstance()->addProjectiles(proj);
+	for (int i = 0; i < entity->getAmmoCount(); i++) {
+		sf::Vector2f pos(entity->getPosition().x + 50, entity->getPosition().y);
+		Playground::getInstance()->addProjectiles(pos);
+		entity->Shoot();
+	}
+	
 }
 
-void Shoot_Action::End(Entity* Plant)
+void Shoot_Action::End(Entity* entity)
 {
 }
 

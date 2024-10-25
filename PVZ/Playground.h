@@ -24,22 +24,21 @@ private:
 
 
 	Behaviour* ZombieBehaviour;
-
+	Behaviour* mProjectilesBehaviour;
 
 	Playground();
 public:
 	static Playground* instantiate();
 	static Playground* getInstance();
-	void checkCollisionPlant(std::vector<Plant*>& mProjectiles,std::vector<Zombie*>& mEnemies); 
-	void checkCollisionProjectile(std::vector<Projectile*>& mProjectiles,std::vector<Zombie*>& mEnemies); 
 
+	bool checkCollision(Entity* in, Entity* out);
 
 	const std::vector<Zombie*>& getZombies() const ; 
 	const std::vector<Projectile*>& getProjectile() const ;
 	const std::vector<Plant*>& getPlant() const ; 
 
 
-	void addProjectiles(Projectile* proj);
+	void addProjectiles(sf::Vector2f pos);
 
 	~Playground();
 	void draw(sf::RenderWindow& window);

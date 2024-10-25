@@ -17,11 +17,21 @@ public:
     void setState(Context::State state);
     Context::State getState() const;
 
+    virtual void Move()=0;
+    virtual bool Collide() = 0;
+    void TakeDamage();
+    int GetLife();
     void Update();
+
+    int getAmmoCount() const;
+    void Shoot();
+    
 protected:
+    int mAmmoCount, mMaxAmmo;
+    float mSpeed;
+    int mLife;
     sf::CircleShape mShape;
     sf::Color mColor;
-
     sf::Vector2f mPosition;
     std::string mName;
     Context::State mState;

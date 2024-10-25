@@ -3,7 +3,7 @@
 #include "Entity.h"
 class Move_Action : public Action
 {
-	float speed;
+	
 public:
 	Move_Action();
 	void Start(Entity* entity)override;

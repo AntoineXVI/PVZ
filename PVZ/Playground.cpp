@@ -8,6 +8,10 @@
 #include "Condition.hpp"
 #include "Shoot_Condition.h"
 #include "Shoot_Action.h"
+#include "Hit_Condition.h"
+#include "Hit_Action.h"
+#include "Move_Condition.h"
+#include "Move_Action.h"
 #include "Die_Condition.h"
 #include "Die_Action.h"
 namespace
@@ -22,7 +26,7 @@ Playground::Playground()
 
     Transition* shoot_Transition = new Transition();
     shoot_Transition->setTargetState(Context::State::SHOOT);
-    //shoot_Transition->addCondition(new Shoot_Condition());
+    shoot_Transition->addCondition(new Shoot_Condition());
 
 
     Action* shoot_Action = new Shoot_Action();
@@ -30,66 +34,95 @@ Playground::Playground()
     behaviour->AddAction(Context::State::SHOOT, shoot_Action);
     behaviour->AddTransition(Context::State::IDLE, shoot_Transition);
 
-    //behaviour->AddAction(Context::State::SHOOT, shoot_Action);
 
-    mPlants.push_back(new Plant(sf::Vector2f(10.f,50.f), behaviour,5));
-    mPlants.push_back(new Plant(sf::Vector2f(10.f, 150.f), behaviour, 5));
-    mPlants.push_back(new Plant(sf::Vector2f(10.f, 250.f), behaviour, 5));
-    mPlants.push_back(new Plant(sf::Vector2f(10.f, 350.f), behaviour, 5));
+    mPlants.push_back(new Plant(sf::Vector2f(10.f,50.f), behaviour));
+    mPlants.push_back(new Plant(sf::Vector2f(10.f, 150.f), behaviour));
+    mPlants.push_back(new Plant(sf::Vector2f(10.f, 250.f), behaviour));
+    mPlants.push_back(new Plant(sf::Vector2f(10.f, 350.f), behaviour));
 
     //zombie
+
     ZombieBehaviour = new Behaviour();
+
+
+    Transition* move_Transition = new Transition();
+    move_Transition->setTargetState(Context::State::MOVE);
+    move_Transition->addCondition(new Move_Condition());
+
+    Action* move_Action = new Move_Action();
+
+    ZombieBehaviour->AddAction(Context::State::MOVE, move_Action);
+    ZombieBehaviour->AddTransition(Context::State::MOVE, move_Transition);
+
+    //proj
+
+    mProjectilesBehaviour = new Behaviour();
+
+    mProjectilesBehaviour->AddAction(Context::State::MOVE, move_Action);
+    mProjectilesBehaviour->AddTransition(Context::State::MOVE, move_Transition);
+
+
+    //hit
+    Transition* hit_Transition = new Transition();
+    hit_Transition->setTargetState(Context::State::HIT);
+    hit_Transition->addCondition(new Hit_Condition());
+
+    Action* hit_Action = new Hit_Action();
+
+    behaviour->AddAction(Context::State::HIT, hit_Action);
+    behaviour->AddTransition(Context::State::IDLE, hit_Transition);
+    behaviour->AddTransition(Context::State::SHOOT, hit_Transition);
+
+    mProjectilesBehaviour->AddAction(Context::State::HIT, hit_Action);
+    mProjectilesBehaviour->AddTransition(Context::State::MOVE, hit_Transition);
+
+    ZombieBehaviour->AddAction(Context::State::HIT, hit_Action);
+    ZombieBehaviour->AddTransition(Context::State::MOVE, hit_Transition);
+    
+    //die
 
     Transition* die_Transition = new Transition();
     die_Transition->setTargetState(Context::State::DIE);
     die_Transition->addCondition(new Die_Condition());
 
-    /*Action* die_Action = new Die_Action(); 
+    Action* die_Action = new Die_Action();
 
-    ZombieBehaviour->AddAction(Context::State::DIE, die_Action); */
+    behaviour->AddAction(Context::State::DIE, die_Action);
+    behaviour->AddTransition(Context::State::IDLE, die_Transition);
+    behaviour->AddTransition(Context::State::SHOOT, die_Transition);
+    behaviour->AddTransition(Context::State::HIT, die_Transition);
+
+    mProjectilesBehaviour->AddAction(Context::State::DIE, die_Action);
+    mProjectilesBehaviour->AddTransition(Context::State::MOVE, die_Transition);
+    mProjectilesBehaviour->AddTransition(Context::State::HIT, die_Transition);
+
+    ZombieBehaviour->AddAction(Context::State::DIE, die_Action);
+    ZombieBehaviour->AddTransition(Context::State::MOVE, die_Transition);
+    ZombieBehaviour->AddTransition(Context::State::HIT, die_Transition);
+
 }
 
-void Playground::checkCollisionPlant(std::vector<Plant*>& plants, std::vector<Zombie*>& mEnemies) //check si zombie tue plante
-{
-    for (int i = 0; i < plants.size(); ++i)
+
+
+bool Playground::checkCollision(Entity* in, Entity* out) {
+
+
+    sf::FloatRect inBounds = in->GetShape().getGlobalBounds();
+
+    sf::FloatRect outBounds = out->GetShape().getGlobalBounds();
+
+    // Vérifie si la plante est touché par un zombie
+    if (inBounds.intersects(outBounds))
     {
-        sf::FloatRect plantBounds = plants[i]->GetShape().getGlobalBounds();
-
-        // Parcours de chaque zombie
-        for (int j = 0; j < mEnemies.size(); ++j)
-        {
-            sf::FloatRect zombieBounds = mEnemies[j]->GetShape().getGlobalBounds();
-
-            // Vérifie si la plante est touché par un zombie
-            if (plantBounds.intersects(zombieBounds))
-            {
-                //collision
-                plants[i]->setState(Context::State::HIT);
-                mEnemies[j]->setState(Context::State::DIE);
-            }
-        }
+        return true;
+        //collision
+        //plants[i]->setState(Context::State::HIT);
+        //mEnemies[j]->setState(Context::State::DIE);
     }
-}void Playground::checkCollisionProjectile(std::vector<Projectile*>& projectiles, std::vector<Zombie*>& mEnemies) //check si zombie tue plante
-{
-    for (int i = 0; i < projectiles.size(); ++i)
-    {
-        sf::FloatRect plantBounds = projectiles[i]->GetShape().getGlobalBounds();
 
-        // Parcours de chaque zombie
-        for (int j = 0; j < mEnemies.size(); ++j)
-        {
-            sf::FloatRect zombieBounds = mEnemies[j]->GetShape().getGlobalBounds();
-
-            // Vérifie si le projectile touche un zombie
-            if (plantBounds.intersects(zombieBounds))
-            {
-                //collision
-                projectiles[i]->setState(Context::State::DIE);
-                mEnemies[j]->setState(Context::State::DIE);
-            }
-        }
-    }
+    return false;
 }
+
 
 Playground* Playground::instantiate()
 {
@@ -124,13 +157,11 @@ const std::vector<Plant*>& Playground::getPlant() const
 
 
 
-Playground::~Playground()
-{
 
-}
 
-void Playground::addProjectiles(Projectile* proj )
+void Playground::addProjectiles(sf::Vector2f pos)
 {
+    Projectile* proj = new Projectile(pos, mProjectilesBehaviour);
     mProjectiles.push_back(proj);
 }
 
@@ -142,11 +173,11 @@ void Playground::draw(sf::RenderWindow& window)
     for (int i = 0; i < mZombies.size(); i++) {
         window.draw(mZombies[i]->GetShape());
     }
-
+     
     for (int i = 0; i < mProjectiles.size(); i++) {
         window.draw(mProjectiles[i]->GetShape());
     }
-
+    
 }
 
 void Playground::update()
@@ -160,8 +191,6 @@ void Playground::update()
     for (int i = 0; i < mProjectiles.size(); i++) {
         mProjectiles[i]->Update();
     }
-    checkCollisionPlant(mPlants, mZombies); 
-    checkCollisionProjectile(mProjectiles, mZombies);
 
 }
 
@@ -194,4 +223,8 @@ void Playground::handleUserInput(sf::Event& event, sf::RenderWindow& window)
         }
         mZombies.push_back(new Zombie(sf::Vector2f(MouseFinalPosition.x, MouseFinalPosition.y), ZombieBehaviour));
     }
+}
+Playground::~Playground()
+{
+
 }
